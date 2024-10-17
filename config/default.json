@@ -1,0 +1,4 @@
+{ 
+    "url": "mongodb://localhost:27017/BansalDB?retryWrites=true&w=majority",
+    "secretKey" : "gfhgfhgjthrhft1234gdfgdf"
+}
