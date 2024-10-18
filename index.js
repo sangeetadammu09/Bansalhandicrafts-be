@@ -25,11 +25,11 @@ const swaggerDocs = require("./swagger.json")
 
 //middlewares
 app.use(errorHandler)
-//app.use(express.static('public'));
+app.use(express.static('public'));
 app.get('/',(req,res)=>{
   console.log('backend started')
-  res.send('Hello World!');
- // res.sendFile(path.join(__dirname,'public/index.html'));
+ // res.send('Hello World!');
+  res.sendFile(path.join(__dirname,'public/index.html'));
 })
 app.use('/api-docs/bansal',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 app.use(express.json());
