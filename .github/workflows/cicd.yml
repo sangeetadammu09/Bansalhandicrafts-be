@@ -16,17 +16,17 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t  sangeetadammu0912/bansalhandicraft-be .  
+        run: docker build -t  sangeetadammu0912/Bansalhandicrafts-be .  
       - name: Publish image to docker hub
-        run: docker push  sangeetadammu0912/bansalhandicraft-be:latest
+        run: docker push  sangeetadammu0912/Bansalhandicrafts-be:latest
         
   deploy:
     needs: build
     runs-on: self-hosted
     steps:
       - name: Pull image from docker hub
-        run: docker pull  sangeetadammu0912/bansalhandicraft-be:latest
+        run: docker pull  sangeetadammu0912/Bansalhandicrafts-be:latest
       - name: Delete old container
         run: docker rm -f nodejs-app-container  
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name nodejs-app-container  sangeetadammu0912/bansalhandicraft-be  
+        run: docker run -d -p 8080:8080 --name nodejs-app-container  sangeetadammu0912/Bansalhandicrafts-be  
