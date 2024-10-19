@@ -4,7 +4,7 @@ const mongoose = require ("mongoose");
 const connectDB =async()=>{
     try{
         const password = encodeURIComponent(process.env.MONGO_PASSWORD.trim());
-        const connectionString = `mongodb+srv://sangeetadammu12:${password}@dev-cluster.wftp2.mongodb.net/?retryWrites=true&w=majority&appName=dev-cluster`; // clustore url
+        const connectionString = `mongodb+srv://sangeetadammu12:${password}@dev-cluster.wftp2.mongodb.net/BansalhandicraftsDB?retryWrites=true&w=majority&appName=dev-cluster`; // clustore url
        const connect = await mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: true});
        console.log('DB connected successfully', connect.connection.host, connect.connection.name)
     }catch(err){
