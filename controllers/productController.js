@@ -280,7 +280,6 @@ exports.update = async (req,res)=>{
              return res.status(200).json({ "status": 200, 'message': 'product updated successfully', 'data':data});
 
     }catch (err) {
-        //console.log(err,'error')
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
 }
