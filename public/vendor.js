@@ -59469,7 +59469,7 @@ class AsyncStackTaggingZoneSpec {
  *   processWithinAngularZone() {
  *     this.label = 'inside';
  *     this.progress = 0;
- *     this._increaseProgress(() => //console.log('Inside Done!'));
+ *     this._increaseProgress(() => console.log('Inside Done!'));
  *   }
  *
  *   // Loop outside of the Angular zone
@@ -59480,14 +59480,14 @@ class AsyncStackTaggingZoneSpec {
  *     this._ngZone.runOutsideAngular(() => {
  *       this._increaseProgress(() => {
  *         // reenter the Angular zone and display done
- *         this._ngZone.run(() => { //console.log('Outside Done!'); });
+ *         this._ngZone.run(() => { console.log('Outside Done!'); });
  *       });
  *     });
  *   }
  *
  *   _increaseProgress(doneCallback: () => void) {
  *     this.progress += 1;
- *     //console.log(`Current progress: ${this.progress}%`);
+ *     console.log(`Current progress: ${this.progress}%`);
  *
  *     if (this.progress < 100) {
  *       window.setTimeout(() => this._increaseProgress(doneCallback), 10);
@@ -59653,7 +59653,7 @@ function checkStable(zone) {
   // export class AppComponent {
   // constructor(private ngZone: NgZone) {
   //   this.ngZone.onStable.subscribe(() => {
-  //     this.ngZone.run(() => //console.log('stable'););
+  //     this.ngZone.run(() => console.log('stable'););
   //   });
   // }
   //
@@ -59977,7 +59977,7 @@ function isPlatformBrowser(injector) {
  *
  *   constructor() {
  *     afterRender(() => {
- *       //console.log('content height: ' + this.contentRef.nativeElement.scrollHeight);
+ *       console.log('content height: ' + this.contentRef.nativeElement.scrollHeight);
  *     });
  *   }
  * }
@@ -69523,7 +69523,7 @@ function loadIcuContainerVisitor() {
    * const nextRNode = icuContainerIteratorStart(tIcuContainerNode, lView);
    * let rNode: RNode|null;
    * while(rNode = nextRNode()) {
-   *   //console.log(rNode);
+   *   console.log(rNode);
    * }
    * ```
    *
@@ -74628,7 +74628,7 @@ const HostBinding = makePropDecorator('HostBinding', hostPropertyName => ({
  *
  *   @HostListener('click', ['$event.target'])
  *   onClick(btn) {
- *     //console.log('button', btn, 'number of clicks:', this.numberOfClicks++);
+ *     console.log('button', btn, 'number of clicks:', this.numberOfClicks++);
  *   }
  * }
  *
@@ -74918,7 +74918,7 @@ class ApplicationInitStatus {
 class Console {
   log(message) {
     // tslint:disable-next-line:no-console
-    //console.log(message);
+    console.log(message);
   }
   // Note: for reporting errors use `DOM.logError()` as it is platform specific
   warn(message) {
@@ -76884,8 +76884,8 @@ function optionsReducer(dst, objs) {
  * constructor(appRef: ApplicationRef) {
  *   appRef.isStable.pipe(
  *      filter(stable => stable)
- *   ).subscribe(() => //console.log('App is stable now');
- *   interval(1000).subscribe(counter => //console.log(counter));
+ *   ).subscribe(() => console.log('App is stable now');
+ *   interval(1000).subscribe(counter => console.log(counter));
  * }
  * ```
  * In this example, `isStable` will never emit `true`,
@@ -76899,9 +76899,9 @@ function optionsReducer(dst, objs) {
  * constructor(appRef: ApplicationRef) {
  *   appRef.isStable.pipe(
  *     first(stable => stable),
- *     tap(stable => //console.log('App is stable now')),
+ *     tap(stable => console.log('App is stable now')),
  *     switchMap(() => interval(1000))
- *   ).subscribe(counter => //console.log(counter));
+ *   ).subscribe(counter => console.log(counter));
  * }
  * ```
  * In this example, the trace "App is stable now" will be logged
@@ -77061,7 +77061,7 @@ class ApplicationRef {
     this._loadComponent(compRef);
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
       const _console = this._injector.get(Console);
-      _//console.log(`Angular is running in development mode.`);
+      _console.log(`Angular is running in development mode.`);
     }
     return compRef;
   }
@@ -79637,7 +79637,7 @@ function printHydrationStats(injector) {
   const console = injector.get(Console);
   const message = `Angular hydrated ${ngDevMode.hydratedComponents} component(s) ` + `and ${ngDevMode.hydratedNodes} node(s), ` + `${ngDevMode.componentsSkippedHydration} component(s) were skipped. ` + `Note: this feature is in Developer Preview mode. ` + `Learn more at https://angular.io/guide/hydration.`;
   // tslint:disable-next-line:no-console
-  //console.log(message);
+  console.log(message);
 }
 /**
  * Returns a Promise that is resolved when an application becomes stable.
@@ -80645,7 +80645,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl(2, Validators.min(3));
    *
-   * //console.log(control.errors); // {min: {min: 3, actual: 2}}
+   * console.log(control.errors); // {min: {min: 3, actual: 2}}
    * ```
    *
    * @returns A validator function that returns an error map with the
@@ -80668,7 +80668,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl(16, Validators.max(15));
    *
-   * //console.log(control.errors); // {max: {max: 15, actual: 16}}
+   * console.log(control.errors); // {max: {max: 15, actual: 16}}
    * ```
    *
    * @returns A validator function that returns an error map with the
@@ -80691,7 +80691,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('', Validators.required);
    *
-   * //console.log(control.errors); // {required: true}
+   * console.log(control.errors); // {required: true}
    * ```
    *
    * @returns An error map with the `required` property
@@ -80715,7 +80715,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('some value', Validators.requiredTrue);
    *
-   * //console.log(control.errors); // {required: true}
+   * console.log(control.errors); // {required: true}
    * ```
    *
    * @returns An error map that contains the `required` property
@@ -80754,7 +80754,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('bad@', Validators.email);
    *
-   * //console.log(control.errors); // {email: true}
+   * console.log(control.errors); // {email: true}
    * ```
    *
    * @returns An error map with the `email` property
@@ -80783,7 +80783,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('ng', Validators.minLength(3));
    *
-   * //console.log(control.errors); // {minlength: {requiredLength: 3, actualLength: 2}}
+   * console.log(control.errors); // {minlength: {requiredLength: 3, actualLength: 2}}
    * ```
    *
    * ```html
@@ -80813,7 +80813,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('Angular', Validators.maxLength(5));
    *
-   * //console.log(control.errors); // {maxlength: {requiredLength: 5, actualLength: 7}}
+   * console.log(control.errors); // {maxlength: {requiredLength: 5, actualLength: 7}}
    * ```
    *
    * ```html
@@ -80841,7 +80841,7 @@ class Validators {
    * ```typescript
    * const control = new FormControl('1', Validators.pattern('[a-zA-Z ]*'));
    *
-   * //console.log(control.errors); // {pattern: {requiredPattern: '^[a-zA-Z ]*$', actualValue: '1'}}
+   * console.log(control.errors); // {pattern: {requiredPattern: '^[a-zA-Z ]*$', actualValue: '1'}}
    * ```
    *
    * ```html
@@ -82811,8 +82811,8 @@ class AbstractControl {
  *   last: new FormControl('Drew'),
  * });
  *
- * //console.log(form.value);   // {first: 'Nancy', last; 'Drew'}
- * //console.log(form.status);  // 'VALID'
+ * console.log(form.value);   // {first: 'Nancy', last; 'Drew'}
+ * console.log(form.status);  // 'VALID'
  * ```
  *
  * ### The type argument, and optional controls
@@ -82982,10 +82982,10 @@ class FormGroup extends AbstractControl {
    *   last: new FormControl()
    * });
    *
-   * //console.log(form.value);   // {first: null, last: null}
+   * console.log(form.value);   // {first: null, last: null}
    *
    * form.setValue({first: 'Nancy', last: 'Drew'});
-   * //console.log(form.value);   // {first: 'Nancy', last: 'Drew'}
+   * console.log(form.value);   // {first: 'Nancy', last: 'Drew'}
    * ```
    *
    * @throws When strict checks fail, such as setting the value of a control
@@ -83030,10 +83030,10 @@ class FormGroup extends AbstractControl {
    *    first: new FormControl(),
    *    last: new FormControl()
    * });
-   * //console.log(form.value);   // {first: null, last: null}
+   * console.log(form.value);   // {first: null, last: null}
    *
    * form.patchValue({first: 'Nancy'});
-   * //console.log(form.value);   // {first: 'Nancy', last: null}
+   * console.log(form.value);   // {first: 'Nancy', last: null}
    * ```
    *
    * @param value The object that matches the structure of the group.
@@ -83098,11 +83098,11 @@ class FormGroup extends AbstractControl {
    *   last: new FormControl('last name')
    * });
    *
-   * //console.log(form.value);  // {first: 'first name', last: 'last name'}
+   * console.log(form.value);  // {first: 'first name', last: 'last name'}
    *
    * form.reset({ first: 'name', last: 'last name' });
    *
-   * //console.log(form.value);  // {first: 'name', last: 'last name'}
+   * console.log(form.value);  // {first: 'name', last: 'last name'}
    * ```
    *
    * ### Reset the form group values and disabled status
@@ -83118,8 +83118,8 @@ class FormGroup extends AbstractControl {
    *   last: 'last'
    * });
    *
-   * //console.log(form.value);  // {last: 'last'}
-   * //console.log(form.get('first').status);  // 'DISABLED'
+   * console.log(form.value);  // {last: 'last'}
+   * console.log(form.get('first').status);  // 'DISABLED'
    * ```
    */
   reset(value = {}, options = {}) {
@@ -87427,8 +87427,8 @@ class ɵInternalFormsSharedModule {
  *   new FormControl('Drew'),
  * ]);
  *
- * //console.log(arr.value);   // ['Nancy', 'Drew']
- * //console.log(arr.status);  // 'VALID'
+ * console.log(arr.value);   // ['Nancy', 'Drew']
+ * console.log(arr.status);  // 'VALID'
  * ```
  *
  * ### Create a form array with array-level validators
@@ -87619,10 +87619,10 @@ class FormArray extends AbstractControl {
    *   new FormControl(),
    *   new FormControl()
    * ]);
-   * //console.log(arr.value);   // [null, null]
+   * console.log(arr.value);   // [null, null]
    *
    * arr.setValue(['Nancy', 'Drew']);
-   * //console.log(arr.value);   // ['Nancy', 'Drew']
+   * console.log(arr.value);   // ['Nancy', 'Drew']
    * ```
    *
    * @param value Array of values for the controls
@@ -87664,10 +87664,10 @@ class FormArray extends AbstractControl {
    *    new FormControl(),
    *    new FormControl()
    * ]);
-   * //console.log(arr.value);   // [null, null]
+   * console.log(arr.value);   // [null, null]
    *
    * arr.patchValue(['Nancy']);
-   * //console.log(arr.value);   // ['Nancy', null]
+   * console.log(arr.value);   // ['Nancy', null]
    * ```
    *
    * @param value Array of latest values for the controls
@@ -87715,7 +87715,7 @@ class FormArray extends AbstractControl {
    * ]);
    * arr.reset(['name', 'last name']);
    *
-   * //console.log(arr.value);  // ['name', 'last name']
+   * console.log(arr.value);  // ['name', 'last name']
    * ```
    *
    * ### Reset the values in a form array and the disabled status for the first control
@@ -87726,8 +87726,8 @@ class FormArray extends AbstractControl {
    *   'last'
    * ]);
    *
-   * //console.log(arr.value);  // ['last']
-   * //console.log(arr.at(0).status);  // 'DISABLED'
+   * console.log(arr.value);  // ['last']
+   * console.log(arr.at(0).status);  // 'DISABLED'
    * ```
    *
    * @param value Array of values for the controls
@@ -87779,10 +87779,10 @@ class FormArray extends AbstractControl {
    *    new FormControl(),
    *    new FormControl()
    * ]);
-   * //console.log(arr.length);  // 2
+   * console.log(arr.length);  // 2
    *
    * arr.clear();
-   * //console.log(arr.length);  // 0
+   * console.log(arr.length);  // 0
    * ```
    *
    * It's a simpler and more efficient alternative to removing all elements one by one:
@@ -87899,7 +87899,7 @@ class FormBuilder {
    * let nnfb = new FormBuilder().nonNullable;
    * let name = nnfb.control('Alex'); // FormControl<string>
    * name.reset();
-   * //console.log(name); // 'Alex'
+   * console.log(name); // 'Alex'
    * ```
    *
    * **Constructing non-nullable groups or arrays**
@@ -87911,7 +87911,7 @@ class FormBuilder {
    * let nnfb = new FormBuilder().nonNullable;
    * let name = nnfb.group({who: 'Alex'}); // FormGroup<{who: FormControl<string>}>
    * name.reset();
-   * //console.log(name); // {who: 'Alex'}
+   * console.log(name); // {who: 'Alex'}
    * ```
    * **Constructing *nullable* fields on groups or arrays**
    *
@@ -87922,7 +87922,7 @@ class FormBuilder {
    * let nnfb = new FormBuilder().nonNullable;
    * // FormGroup<{who: FormControl<string|null>}>
    * let name = nnfb.group({who: new FormControl('Alex')});
-   * name.reset(); //console.log(name); // {who: null}
+   * name.reset(); console.log(name); // {who: null}
    * ```
    *
    * Because the inner control is constructed explicitly by the caller, the builder has
@@ -90857,8 +90857,8 @@ class AngularProfiler {
       win.console.profileEnd(profileName);
     }
     const msPerTick = (end - start) / numTicks;
-    win.//console.log(`ran ${numTicks} change detection cycles`);
-    win.//console.log(`${msPerTick.toFixed(2)} ms per check`);
+    win.console.log(`ran ${numTicks} change detection cycles`);
+    win.console.log(`${msPerTick.toFixed(2)} ms per check`);
     return new ChangeDetectionPerfRecord(msPerTick, numTicks);
   }
 }
@@ -98515,8 +98515,8 @@ function withDebugTracing() {
         return () => router.events.subscribe(e => {
           // tslint:disable:no-console
           console.group?.(`Router Event: ${e.constructor.name}`);
-          //console.log(stringifyEvent(e));
-          //console.log(e);
+          console.log(stringifyEvent(e));
+          console.log(e);
           console.groupEnd?.();
           // tslint:enable:no-console
         });
