@@ -17,7 +17,7 @@ exports.feedbackcreate = async (req, res) => {
         isActive: Joi.boolean().required()
     })
 
-    //console.log(req.body,'request')
+    ////console.log(req.body,'request')
     try {
         await schema.validateAsync(req.body);
         let payload = req.body;
@@ -43,7 +43,7 @@ exports.listoffeedbacks = async (req, res) => {
     }
     query.skip = size * (pageNo - 1)
     query.limit = size;
-    // console.log(query,'query')
+    // //console.log(query,'query')
     try {
         await Feedback.find({}, {}, query, (err, data) => {
             if (err) throw err
@@ -166,7 +166,7 @@ exports.updatefeedback = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err, 'error')
+        //console.log(err, 'error')
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
 }

@@ -27,7 +27,7 @@ const swaggerDocs = require("./swagger.json")
 app.use(errorHandler)
 app.use(express.static('public'));
 app.get('/',(req,res)=>{
-  console.log('backend started')
+  //console.log('backend started')
  // res.send('Hello World!');
   res.sendFile(path.join(__dirname,'public/index.html'));
 })
@@ -68,9 +68,9 @@ connectDb();
 
 //connection to server
 app.listen(port,()=>{
-    console.log(`server started at port ${port}`)
+    //console.log(`server started at port ${port}`)
   //   connection.connect(function(err){
   //     if(err) throw err;
-  //     console.log('Database connected!');
+  //     //console.log('Database connected!');
   // })
 });

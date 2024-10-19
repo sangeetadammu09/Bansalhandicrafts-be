@@ -7,7 +7,7 @@ router.post('/parent',
 
 
   (req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     const output =`
     Name: ${req.body.name} 
     Email: ${req.body.email}
@@ -58,9 +58,9 @@ router.post('/parent',
      
      transporter.sendMail(mailOptions, function(error, info){
        if (error) {
-         console.log(error);
+         //console.log(error);
        } else {
-         console.log('Email sent: ' + info.response);
+         //console.log('Email sent: ' + info.response);
          res.send('Sent Successfully')//if mail is sent successfully send Sent successfully as response
        }
      });
@@ -75,7 +75,7 @@ router.post('/teacher',
 
 
   (req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     const output =`
     Name: ${req.body.name} 
     Email: ${req.body.email}
@@ -123,9 +123,9 @@ router.post('/teacher',
      
      transporter.sendMail(mailOptions, function(error, info){
        if (error) {
-         console.log(error);
+         //console.log(error);
        } else {
-         console.log('Email sent: ' + info.response);
+         //console.log('Email sent: ' + info.response);
          res.send('Sent Successfully')//if mail is sent successfully send Sent successfully as response
        }
      });
@@ -137,7 +137,7 @@ router.post('/teacher',
 //start of contact route
 
 router.post('/contact',(req,res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     const output =`
     Name: ${req.body.name} 
     Email: ${req.body.email}
@@ -171,9 +171,9 @@ router.post('/contact',(req,res)=>{
      
      transporter.sendMail(mailOptions, function(error, info){
        if (error) {
-         console.log(error);
+         //console.log(error);
        } else {
-         console.log('Email sent: ' + info.response);
+         //console.log('Email sent: ' + info.response);
          res.send('Sent Successfully')
        }
      });

@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
 
         try {
             let common = await Admin.findOne({ email: commonFields.email })
-            //console.log(common,'user');
+            ////console.log(common,'user');
 
             //check if image included in payload
             if (req.file) {
@@ -37,7 +37,7 @@ exports.register = async (req, res) => {
                 payload.storageurl = storageUrl;
 
                 var getImageName = payload.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-                let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
                 payload.imageurl = url;
 
             }
@@ -66,10 +66,10 @@ exports.register = async (req, res) => {
         }
     }
     catch (err) {
-        return res.status(401).json({
+        return res.status(400).json({
             message: "Validation problem occured",
             error: err.message,
-            status: 401
+            status: 400
         })
     }
 }
@@ -83,10 +83,10 @@ exports.login = async (req, res) => {
         })
         const commonFields = await schema.validateAsync(req.body);
         let common = await Admin.findOne({ email: commonFields.email });
-    //    console.log(common)
+    //    //console.log(common)
         if (common) {
             const isMatch = await bcrypt.compare(commonFields.password, common.password)
-            console.log(isMatch,'match')
+            //console.log(isMatch,'match')
             if(isMatch){
                 const payload = {
                     common: {
@@ -138,9 +138,21 @@ exports.login = async (req, res) => {
 
 //get single user
 exports.singleuser = async (req, res) => {
-    // console.log(req.params.id)
+    // //console.log(req.params.id)
     try {
         await Admin.findById(req.params.id, (err, data) => {
+            //console.log(data)
+                if(data.storageurlArr.length>0){
+                    for(let item of data.storageurlArr){
+                        if(item.url){                       
+                            var getImageName = item.url.match(/\/([^\/?#]+)[^\/]*$/);
+                            let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
+                            item.imageurl = url;
+                        }
+                    }
+                }          
+
+
             if (err) throw err
             return res.status(200).json({ status: 200, 'message': `User with ${req.params.id} fetched successfully`, 'singleuser': data });
 
@@ -149,6 +161,72 @@ exports.singleuser = async (req, res) => {
     } catch (err) {
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
+}
+
+//filter
+exports.search = async(req,res)=>{
+    //  {
+    //     "filterCondition":{
+    //         "role" : "parent"
+    //     },
+    //     "startNumber" : 1,
+    //     "pageSize" : 10
+        
+    //     }
+        let payload = req.body.filterCondition;
+        var pageNo = parseInt(req.body.startNumber)
+        var size = parseInt(req.body.pageSize)
+        var query = {}
+        if(pageNo < 0 || pageNo === 0) {
+                response = {"error" : true,"message" : "invalid page number, should start with 1"};
+                return res.json(response)
+        }
+        query.skip = size * (pageNo - 1)
+        query.limit = size;
+
+      let filterCond = {};
+      let arr = [];
+        arr.push(payload);
+        for (let x in payload) {
+                if (payload[x]) {
+                    filterCond[x] = { $regex: payload[x] };
+                }
+        }
+    
+         try {
+            await Admin.find({"$or":[filterCond]}, {},query,(err, data)=>{
+                if(err)throw err
+                data.sort((a,b)=>{
+                    return new Date(b.creation_dt) - new Date(a.creation_dt);
+                });
+                
+                data.forEach(x => {
+                if(x.storageurl){
+                var getImageName = x.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
+                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
+                x.imageurl = url;
+                }
+                })
+            
+                Admin.countDocuments({"$or":[filterCond]},(count_error, count) => {
+                    if (err) {
+                      return res.json(count_error);
+                    }
+                    return res.json({
+                      total: count,
+                      page: pageNo,
+                      pageSize: data.length,
+                      'data': data,
+                      status: 200
+                    });
+                  });
+                
+            })
+            
+        }catch(err){
+            return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
+        }
+    
 }
 
 //update user by id
@@ -176,16 +254,23 @@ exports.updateuser = async (req, res) => {
     let payload = req.body;
 
     //check if image included in payload
-    var storageUrl = '';
-    if (req.file) {
-        let storageUrl = `Storage/images/${req.file.filename}`;
-        payload.storageurl = storageUrl;
-
-        var getImageName = payload.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-        let url = `http://localhost:8080/uploads/${getImageName[1]}`;
-        payload.imageurl = url;
-
-    }
+ 
+    if(req.files.length>0){
+        for( let x of req.files){
+         x.storageurl =  `Storage/images/${x.filename.replace(' ', '')}`; 
+        } 
+        payload.storageurlArr = req.files.map((x)=>({'url': x.storageurl }));   
+    }else{
+        const adminInfo = await Admin.findById(id); 
+        if(adminInfo){
+            payload.storageurlArr = adminInfo.storageurlArr;
+              
+        }else{
+            res.status(404);
+            throw new Error('Admin not found')
+        }
+    }   
+    ////console.log(payload);
     try {
         const userInfo = await Admin.findById(id);
 
@@ -200,14 +285,14 @@ exports.updateuser = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err, 'error')
+        //console.log(err, 'error')
         return res.status(500).json({ status: 500, 'message': 'something went wrong', 'err': err.message })
     }
 }
 
 //filter registered enquiry
 exports.allAdmins = async(req,res)=>{
-    // console.log('request',req.body);
+    // //console.log('request',req.body);
        let payload = req.body.filterCondition;
        var pageNo = parseInt(req.body.startNumber)
        var size = parseInt(req.body.pageSize)
@@ -263,7 +348,6 @@ exports.allAdmins = async(req,res)=>{
        }
    
 }
-
 
 //delete parent
 exports.deleteuser = async(req,res)=>{

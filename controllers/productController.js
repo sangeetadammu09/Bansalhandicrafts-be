@@ -48,9 +48,6 @@ exports.list = async(req,res)=>{
      }
      query.skip = size * (pageNo - 1)
      query.limit = size;
-
-    
-
         try {
             await Product.find({},{},query,(err, data)=>{
                 if(err)throw err
@@ -63,13 +60,13 @@ exports.list = async(req,res)=>{
                     for(let item of x.storageurlArr){
                         if(item.url){                       
                             var getImageName = item.url.match(/\/([^\/?#]+)[^\/]*$/);
-                            let url = process.env.HOSTED_API+`${getImageName[1]}`;
+                            let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
                             item.imageurl = url;
                         }
                     }
                 }          
                 })
-                console.log(data)
+                
             
                 Product.countDocuments({},(count_error, count) => {
                     if (err) {
@@ -143,7 +140,14 @@ exports.listbyid = async(req,res)=>{
 
 //filter
 exports.search = async(req,res)=>{
-     // console.log('request',req.body);
+    //  {
+    //     "filterCondition":{
+    //         "role" : "parent"
+    //     },
+    //     "startNumber" : 1,
+    //     "pageSize" : 10
+        
+    //     }
         let payload = req.body.filterCondition;
         var pageNo = parseInt(req.body.startNumber)
         var size = parseInt(req.body.pageSize)
@@ -170,14 +174,19 @@ exports.search = async(req,res)=>{
                 data.sort((a,b)=>{
                     return new Date(b.creation_dt) - new Date(a.creation_dt);
                 });
-                
+
                 data.forEach(x => {
-                if(x.storageurl){
-                var getImageName = x.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
-                x.imageurl = url;
-                }
+                if(x.storageurlArr.length>0){
+                    for(let item of x.storageurlArr){
+                        if(item.url){                       
+                            var getImageName = item.url.match(/\/([^\/?#]+)[^\/]*$/);
+                            let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
+                            item.imageurl = url;
+                        }
+                    }
+                }          
                 })
+                
             
                 Product.countDocuments({"$or":[filterCond]},(count_error, count) => {
                     if (err) {
@@ -202,7 +211,7 @@ exports.search = async(req,res)=>{
 
 //get single
 exports.single = async(req,res)=>{
-   // console.log(req.params.id)
+   // //console.log(req.params.id)
     try {
         await Product.findById(req.params.id,(err, data)=>{
             if(err)throw err
@@ -271,7 +280,7 @@ exports.update = async (req,res)=>{
              return res.status(200).json({ "status": 200, 'message': 'product updated successfully', 'data':data});
 
     }catch (err) {
-        console.log(err,'error')
+        //console.log(err,'error')
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
 }
@@ -291,7 +300,7 @@ exports.delete = async(req,res)=>{
 
 //check Phone and Email Validation
 exports.checkPhoneandEmailValidation = async(req,res)=>{
-    // console.log(req.params.id)
+    // //console.log(req.params.id)
      try {
          await Product.findOne(req.params._id,(err, data)=>{
              if(err)throw err

@@ -27,7 +27,7 @@ exports.register = async (req, res) => {
 
         try {
             let common = await Common.findOne({ email: commonFields.email })
-            //console.log(common,'user');
+            ////console.log(common,'user');
 
             //check if image included in payload
             if (req.file) {
@@ -35,7 +35,7 @@ exports.register = async (req, res) => {
                 payload.storageurl = storageUrl;
 
                 var getImageName = payload.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-                let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
                 payload.imageurl = url;
 
             }
@@ -81,11 +81,11 @@ exports.login = async (req, res) => {
         })
         const commonFields = await schema.validateAsync(req.body);
         let common = await Common.findOne({ email: commonFields.email });
-        console.log(common, 'common field')
+        //console.log(common, 'common field')
 
         if(common){
             const isMatch = await bcrypt.compare(commonFields.password, common.password)
-            console.log(isMatch,'match')
+            //console.log(isMatch,'match')
             if(isMatch){
                 const payload = {
                     common: {
@@ -136,7 +136,7 @@ exports.login = async (req, res) => {
 
 //get single user
 exports.singleuser = async (req, res) => {
-    // console.log(req.params.id)
+    // //console.log(req.params.id)
     try {
         await Common.findById(req.params.id, (err, data) => {
             if (err) throw err
@@ -178,7 +178,7 @@ exports.updateuser = async (req, res) => {
         payload.storageurl = storageUrl;
 
         var getImageName = payload.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-        let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+        let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
         payload.imageurl = url;
 
     }
@@ -196,14 +196,14 @@ exports.updateuser = async (req, res) => {
 
 
     } catch (err) {
-        console.log(err, 'error')
+        //console.log(err, 'error')
         return res.status(500).json({ status: 500, 'message': 'something went wrong', 'err': err.message })
     }
 }
 
 //filter registered teacher
 exports.search = async(req,res)=>{
-    // console.log('request',req.body);
+    // //console.log('request',req.body);
        let payload = req.body.filterCondition;
        var pageNo = parseInt(req.body.startNumber)
        var size = parseInt(req.body.pageSize)

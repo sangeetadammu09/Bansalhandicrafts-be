@@ -17,7 +17,7 @@ const errorHandler = (err,req,res,next) => {
     case constants.SERVER_ERROR:
         res.json({title:"Serve Error", message: err.message, stackTrace : err.stack})
     default:
-        console.log('All Good, No error found')
+        //console.log('All Good, No error found')
     break;
 
    }

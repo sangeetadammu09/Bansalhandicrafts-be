@@ -210,7 +210,7 @@ let AuthInterceptor = class AuthInterceptor {
   constructor() {}
   intercept(request, next) {
     var token = localStorage.getItem('userToken');
-    console.log('setting token from interceptor', token);
+    //console.log('setting token from interceptor', token);
     if (token) {
       // If we have a token, we set it to the header 
       request = request.clone({

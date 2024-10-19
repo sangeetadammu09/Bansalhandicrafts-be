@@ -28,13 +28,13 @@ const storage = (destination)=> multer.diskStorage({
 
         },
         onError : (err,next)=>{
-             return console.log(err, 'error');
+             return //console.log(err, 'error');
             
         }
     
     }).array('image',12);
 // }else{
-//     console.log('User is not authorized or token is missing')
+//     //console.log('User is not authorized or token is missing')
 // }
 
 

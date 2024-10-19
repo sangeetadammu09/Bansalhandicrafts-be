@@ -10,6 +10,6 @@ router.put('/update/:id',validateToken, contactController.updatecontact);
 
 router.post('/listofcontact',validateToken,contactController.listofcontacts);
 
-router.put('/delete/:id',validateToken, contactController.deletecontact);
+router.delete('/delete/:id',validateToken, contactController.deletecontact);
 
 module.exports= router;

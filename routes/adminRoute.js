@@ -10,6 +10,7 @@ router.put('/update/:id', fileUpload("./Storage/images"),adminController.updateu
 router.post('/login',adminController.login);
 router.post('/all',validateToken, adminController.allAdmins);
 router.delete('/delete/:id',validateToken, adminController.deleteuser);
+router.post('/search',validateToken, adminController.search);
 
 module.exports= router;
 

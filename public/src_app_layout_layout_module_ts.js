@@ -218,7 +218,7 @@ let HeaderComponent = class HeaderComponent {
     } else {
       this.greetingtxt = "Welcome";
     }
-    console.log(this.greetingtxt);
+    //console.log(this.greetingtxt);
   }
   static #_ = this.ctorParameters = () => [{
     type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService
@@ -282,7 +282,7 @@ let SidebarComponent = class SidebarComponent {
     this.collapsed = false;
     this.showMenu = '';
     this.pushRightClass = 'push-right';
-    console.log(this.menuList);
+    //console.log(this.menuList);
   }
   eventCalled() {
     this.isActive = !this.isActive;
