@@ -64,7 +64,7 @@ exports.list = async(req,res)=>{
                         if(item.url){
                           
                             var getImageName = item.url.match(/\/([^\/?#]+)[^\/]*$/);
-                            let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+                            let url = process.env.HOSTED_API+`${getImageName[1]}`;
                             item.imageurl = url;
                         }
                     }
@@ -116,7 +116,7 @@ exports.listbyid = async(req,res)=>{
                 data.forEach(x => {
                 if(x.storageurl){
                 var getImageName = x.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-                let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
                 x.imageurl = url;
                 }
                 })
@@ -175,7 +175,7 @@ exports.search = async(req,res)=>{
                 data.forEach(x => {
                 if(x.storageurl){
                 var getImageName = x.storageurl.match(/\/([^\/?#]+)[^\/]*$/);
-                let url = `http://localhost:8080/uploads/${getImageName[1]}`;
+                let url = process.env.HOSTED_API+`uploads/${getImageName[1]}`;
                 x.imageurl = url;
                 }
                 })
