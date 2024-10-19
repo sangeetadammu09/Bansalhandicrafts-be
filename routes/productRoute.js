@@ -10,7 +10,7 @@ router.post('/form',fileUpload("./Storage/images"),productController.create);
 //validated apis
 router.post('/listbyid/:id',validateToken, productController.listbyid);
 
-router.post('/search',validateToken, productController.search);
+router.post('/search', productController.search);
 
 router.get('/:id',validateToken, productController.single);
 

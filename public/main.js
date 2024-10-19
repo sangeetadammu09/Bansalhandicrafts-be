@@ -19,10 +19,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [{
   path: 'dashboard',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-152a9a"), __webpack_require__.e("src_app_layout_layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./layout/layout.module */ 4470)).then(m => m.LayoutModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-cb64cf"), __webpack_require__.e("src_app_layout_layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./layout/layout.module */ 4470)).then(m => m.LayoutModule)
 }, {
   path: '',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-152a9a"), __webpack_require__.e("src_app_common-layout_common-layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./common-layout/common-layout.module */ 7342)).then(m => m.CommonLayoutModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-cb64cf"), __webpack_require__.e("src_app_common-layout_common-layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./common-layout/common-layout.module */ 7342)).then(m => m.CommonLayoutModule)
 }
 // { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
 // { path: '**', redirectTo: 'not-found' }
@@ -82,19 +82,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppModule: () => (/* binding */ AppModule)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 6575);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 4860);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser */ 6480);
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ 4987);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 4860);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 6480);
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser/animations */ 4987);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 3966);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 6401);
-/* harmony import */ var _shared_modules_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared/modules/language-translation/language-translation.module */ 3443);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 8849);
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-toastr */ 7548);
-/* harmony import */ var _shared_utils_auth_interceptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./shared/utils/auth.interceptor */ 7764);
-
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-toastr */ 7548);
+/* harmony import */ var _shared_utils_auth_interceptor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared/utils/auth.interceptor */ 7764);
 
 
 
@@ -108,80 +106,20 @@ __webpack_require__.r(__webpack_exports__);
 
 //import { CarouselModule } from 'ngx-owl-carousel-o';
 let AppModule = class AppModule {};
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__.BrowserAnimationsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _shared_modules_language_translation_language_translation_module__WEBPACK_IMPORTED_MODULE_2__.LanguageTranslationModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_forms__WEBPACK_IMPORTED_MODULE_10__.FormsModule, ngx_toastr__WEBPACK_IMPORTED_MODULE_11__.ToastrModule.forRoot({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.NgModule)({
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__.CommonModule, _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__.BrowserAnimationsModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule, _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.FormsModule, ngx_toastr__WEBPACK_IMPORTED_MODULE_10__.ToastrModule.forRoot({
     closeButton: true,
     timeOut: 3000,
     progressBar: true
   })],
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
   providers: [{
-    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HTTP_INTERCEPTORS,
-    useClass: _shared_utils_auth_interceptor__WEBPACK_IMPORTED_MODULE_3__.AuthInterceptor,
+    provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HTTP_INTERCEPTORS,
+    useClass: _shared_utils_auth_interceptor__WEBPACK_IMPORTED_MODULE_2__.AuthInterceptor,
     multi: true
   }],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
 })], AppModule);
-
-
-/***/ }),
-
-/***/ 3443:
-/*!************************************************************************************!*\
-  !*** ./src/app/shared/modules/language-translation/language-translation.module.ts ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   HttpLoaderFactory: () => (/* binding */ HttpLoaderFactory),
-/* harmony export */   LanguageTranslationModule: () => (/* binding */ LanguageTranslationModule)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 4860);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngx-translate/core */ 1916);
-/* harmony import */ var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngx-translate/http-loader */ 6930);
-
-/**
- * This module is used to language translations.
- * The translations are saved in a json file in /src/app/assets/i18n directory
- * Docs: https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-angular7-app-with-ngx-translate
- */
-
-
-// import ngx-translate and the http loader
-
-
-// ngx-translate - required for AOT compilation
-function HttpLoaderFactory(http) {
-  return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_0__.TranslateHttpLoader(http);
-}
-let LanguageTranslationModule = class LanguageTranslationModule {
-  constructor(translate) {
-    this.translate = translate;
-    // Gets Default language from browser if available, otherwise set English ad default
-    this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
-    this.translate.setDefaultLang('en');
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
-  }
-  static #_ = this.ctorParameters = () => [{
-    type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__.TranslateService
-  }];
-};
-LanguageTranslationModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-  declarations: [],
-  imports: [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__.TranslateModule.forRoot({
-    loader: {
-      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__.TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpClient]
-    }
-  })],
-  exports: [_ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__.TranslateModule]
-})], LanguageTranslationModule);
 
 
 /***/ }),
