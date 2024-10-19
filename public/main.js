@@ -19,10 +19,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [{
   path: 'dashboard',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-cb64cf"), __webpack_require__.e("src_app_layout_layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./layout/layout.module */ 4470)).then(m => m.LayoutModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-152a9a"), __webpack_require__.e("src_app_layout_layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./layout/layout.module */ 4470)).then(m => m.LayoutModule)
 }, {
   path: '',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-cb64cf"), __webpack_require__.e("src_app_common-layout_common-layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./common-layout/common-layout.module */ 7342)).then(m => m.CommonLayoutModule)
+  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_component_module_ts-node_modules_ng-bootstrap_ng-bootstrap_fesm202-152a9a"), __webpack_require__.e("src_app_common-layout_common-layout_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./common-layout/common-layout.module */ 7342)).then(m => m.CommonLayoutModule)
 }
 // { path: 'not-found', loadChildren: () => import('./not-found/not-found.module').then((m) => m.NotFoundModule) },
 // { path: '**', redirectTo: 'not-found' }

@@ -117,8 +117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 6575);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ 5618);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 1916);
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ 5618);
 /* harmony import */ var _layout_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layout-routing.module */ 3804);
 /* harmony import */ var _layout_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layout.component */ 4999);
 /* harmony import */ var _shared_components_header_header_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./shared-components/header/header.component */ 9935);
@@ -133,10 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 let LayoutModule = class LayoutModule {};
 LayoutModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.CommonModule, _layout_routing_module__WEBPACK_IMPORTED_MODULE_0__.LayoutRoutingModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateModule, _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__.NgbDropdownModule, _components_component_module__WEBPACK_IMPORTED_MODULE_4__.ComponentModule],
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.CommonModule, _layout_routing_module__WEBPACK_IMPORTED_MODULE_0__.LayoutRoutingModule, _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__.NgbDropdownModule, _components_component_module__WEBPACK_IMPORTED_MODULE_4__.ComponentModule],
   declarations: [_layout_component__WEBPACK_IMPORTED_MODULE_1__.LayoutComponent, _shared_components_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__.SidebarComponent, _shared_components_header_header_component__WEBPACK_IMPORTED_MODULE_2__.HeaderComponent]
 })], LayoutModule);
 
@@ -154,22 +152,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   HeaderComponent: () => (/* binding */ HeaderComponent)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./header.component.html?ngResource */ 3733);
 /* harmony import */ var _header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header.component.scss?ngResource */ 4205);
 /* harmony import */ var _header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 7947);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngx-translate/core */ 1916);
-
 
 
 
 
 
 let HeaderComponent = class HeaderComponent {
-  constructor(translate, router) {
-    this.translate = translate;
+  constructor(router) {
     this.router = router;
     this.user = JSON.parse(localStorage.getItem('user'));
     this.greetingtxt = '';
@@ -200,9 +195,6 @@ let HeaderComponent = class HeaderComponent {
     localStorage.removeItem('isLoggedin');
     this.router.navigate(['/']);
   }
-  changeLang(language) {
-    this.translate.use(language);
-  }
   greetingMessage() {
     var today = new Date();
     var hourNow = today.getHours();
@@ -221,12 +213,10 @@ let HeaderComponent = class HeaderComponent {
     console.log(this.greetingtxt);
   }
   static #_ = this.ctorParameters = () => [{
-    type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__.TranslateService
-  }, {
     type: _angular_router__WEBPACK_IMPORTED_MODULE_2__.Router
   }];
 };
-HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+HeaderComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Component)({
   selector: 'app-header',
   template: _header_component_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
   styles: [(_header_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
@@ -656,7 +646,7 @@ module.exports = "<nav class=\"navbar navbar-expand-lg fixed-top bg-color\">\n  
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<nav [ngClass]=\"{ sidebarPushRight: isActive, collapsed: collapsed }\" class=\"sidebar bg-color\">\n    <div class=\"list-group\" *ngFor=\"let item of menuList\">\n        <div class=\"nested-menu\">\n          <a (click)=\"addExpandClass(item.id)\" class=\"list-group-item\" [attr.data-target]=\"'#menu' + item.url\"\n            id=\"MdmSubMenuLink\" aria-expanded=\"true\" aria-controls=\"MdmSubMenu\"\n            [routerLink]=\"item.subMenus.length == 0 ? item.url : undefined\">\n            <i [ngClass]=\"'fa ' + item.icon\"></i> \n            <span class=\"pull-right\"><i [ngClass]=\"item.subMenus.length > 0 ? 'fa fa-fw fa-angle-down' : null\"></i></span>\n            <span>{{item.name}}</span>\n          </a>\n          <ng-container *ngIf=\"item.subMenus.length > 0\">\n            <li [class.expand]=\"showMenu === item.id\" class=\"nested\">\n              <ul class=\"submenu\">\n                <li *ngFor=\"let sub of item.subMenus\">\n                  <a routerLink=\"{{sub.url}}\" routerLinkActive=\"active\">\n                    <i [ngClass]=\"'fa ' + sub.icon\"></i> &nbsp;\n                    <span>{{sub.name}}</span>\n                  </a>\n                </li>\n              </ul>\n            </li>\n\n          </ng-container>\n          \n        </div>\n      </div>\n      <div class=\"list-group logout-button\" (click)=\"onLoggedout()\">\n        <div class=\"nested-menu\">\n          <a class=\"list-group-item\"[routerLink]=\"['/']\" >           \n            <span><i class=\"fa fa-fw fa-power-off\"></i></span>\n            <span> {{ 'Log Out' | translate }}</span>\n          </a>   \n        </div>\n      </div>\n      \n    <div (click)=\"toggleCollapsed()\" [ngClass]=\"{ collapsed: collapsed }\" class=\"toggle-button\">\n        <i class=\"fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}\"></i>&nbsp;\n        <span>{{ 'Collapse Sidebar' | translate }}</span>\n    </div>\n</nav>\n";
+module.exports = "<nav [ngClass]=\"{ sidebarPushRight: isActive, collapsed: collapsed }\" class=\"sidebar bg-color\">\n    <div class=\"list-group\" *ngFor=\"let item of menuList\">\n        <div class=\"nested-menu\">\n          <a (click)=\"addExpandClass(item.id)\" class=\"list-group-item\" [attr.data-target]=\"'#menu' + item.url\"\n            id=\"MdmSubMenuLink\" aria-expanded=\"true\" aria-controls=\"MdmSubMenu\"\n            [routerLink]=\"item.subMenus.length == 0 ? item.url : undefined\">\n            <i [ngClass]=\"'fa ' + item.icon\"></i> \n            <span class=\"pull-right\"><i [ngClass]=\"item.subMenus.length > 0 ? 'fa fa-fw fa-angle-down' : null\"></i></span>\n            <span>{{item.name}}</span>\n          </a>\n          <ng-container *ngIf=\"item.subMenus.length > 0\">\n            <li [class.expand]=\"showMenu === item.id\" class=\"nested\">\n              <ul class=\"submenu\">\n                <li *ngFor=\"let sub of item.subMenus\">\n                  <a routerLink=\"{{sub.url}}\" routerLinkActive=\"active\">\n                    <i [ngClass]=\"'fa ' + sub.icon\"></i> &nbsp;\n                    <span>{{sub.name}}</span>\n                  </a>\n                </li>\n              </ul>\n            </li>\n\n          </ng-container>\n          \n        </div>\n      </div>\n      <div class=\"list-group logout-button\" (click)=\"onLoggedout()\">\n        <div class=\"nested-menu\">\n          <a class=\"list-group-item\"[routerLink]=\"['/']\" >           \n            <span><i class=\"fa fa-fw fa-power-off\"></i></span>\n            <span> {{ 'Log Out' }}</span>\n          </a>   \n        </div>\n      </div>\n      \n    <div (click)=\"toggleCollapsed()\" [ngClass]=\"{ collapsed: collapsed }\" class=\"toggle-button\">\n        <i class=\"fa fa-fw fa-angle-double-{{ collapsed ? 'right' : 'left' }}\"></i>&nbsp;\n        <span>{{ 'Collapse Sidebar' }}</span>\n    </div>\n</nav>\n";
 
 /***/ })
 
