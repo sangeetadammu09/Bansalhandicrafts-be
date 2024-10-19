@@ -61,16 +61,15 @@ exports.list = async(req,res)=>{
                 data.forEach(x => {
                 if(x.storageurlArr.length>0){
                     for(let item of x.storageurlArr){
-                        if(item.url){
-                          
+                        if(item.url){                       
                             var getImageName = item.url.match(/\/([^\/?#]+)[^\/]*$/);
                             let url = process.env.HOSTED_API+`${getImageName[1]}`;
                             item.imageurl = url;
                         }
                     }
-                }
-               
+                }          
                 })
+                console.log(data)
             
                 Product.countDocuments({},(count_error, count) => {
                     if (err) {
