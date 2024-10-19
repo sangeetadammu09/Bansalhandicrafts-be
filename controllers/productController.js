@@ -211,7 +211,7 @@ exports.search = async(req,res)=>{
 
 //get single
 exports.single = async(req,res)=>{
-   // //console.log(req.params.id)
+  
     try {
         await Product.findById(req.params.id,(err, data)=>{
             if(err)throw err
