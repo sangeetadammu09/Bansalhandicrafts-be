@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const express = require ('express');
-var Contact = require ('../models/contactform')
+var Contact = require ('../models/contact')
 
 
 exports.createContact = async(req,res)=>{

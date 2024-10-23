@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const Feedback = require('../models/Feedback');
+const Feedback = require('../models/feedback');
 const Teacher = require('../models/Teacher');
 
 

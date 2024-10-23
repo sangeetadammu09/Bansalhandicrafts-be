@@ -361,3 +361,19 @@ exports.deleteuser = async(req,res)=>{
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
 }
+
+
+//check Phone and Email Validation
+exports.checkPhoneandEmailValidation = async(req,res)=>{
+    // //console.log(req.params.id)
+     try {
+         await Admin.findOne(req.params._id,(err, data)=>{
+             if(err)throw err
+             return res.status(200).json({ 'message': `Admin with ${req.params.id} already exists`});
+             
+         })
+        
+     } catch (err) {
+         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
+     }
+ }

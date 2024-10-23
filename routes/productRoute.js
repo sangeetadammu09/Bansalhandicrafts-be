@@ -16,8 +16,6 @@ router.get('/:id',validateToken, productController.single);
 
 router.put('/update/:id', fileUpload("./Storage/images"),productController.update);
 
-router.get('/check/:id', productController.checkPhoneandEmailValidation)
-
 router.delete('/delete/:id',validateToken, productController.delete);
 
 module.exports= router; 

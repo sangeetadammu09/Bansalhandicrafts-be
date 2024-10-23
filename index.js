@@ -16,7 +16,9 @@ const contactRoute = require ('./routes/contactRoute');
 const mailRoute = require('./routes/mailRoute')
 const productRoute = require('./routes/productRoute')
 //const feedbackRoute = require('./routes/feedbackRoute')
-const adminRoute = require('./routes/adminRoute')
+const adminRoute = require('./routes/adminRoute');
+const projectRoute = require('./routes/projectRoute');
+ const exhibitionRoute = require('./routes/exhibitionRoute');
 
 //swagger
 const swaggerUI = require('swagger-ui-express');
@@ -31,7 +33,7 @@ app.use(errorHandler)
 //  // res.send('Hello World!');
 //  // res.sendFile(path.join(__dirname,'public/index.html'));
 // })
-app.use('/api-docs/bansal',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
+//app.use('/api-docs/bansal',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 app.use(express.json());
 app.use(express.urlencoded({ limit: "50mb", parameterLimit: 500000000, extended:true }));
 app.use(cors({origin:'*',credentials:true}));
@@ -42,6 +44,8 @@ app.use('/', commonRoute);
 app.use('/mail', mailRoute);
 app.use('/contact', contactRoute);
 app.use('/product',productRoute);
+app.use('/project',projectRoute); 
+app.use('/exhibition',exhibitionRoute);
 //app.use('/feedback',feedbackRoute);
 app.use('/admin',adminRoute);
 
@@ -68,7 +72,7 @@ connectDb();
 
 //connection to server
 app.listen(port,()=>{
-    //console.log(`server started at port ${port}`)
+    console.log(`server started at port ${port}`)
   //   connection.connect(function(err){
   //     if(err) throw err;
   //     //console.log('Database connected!');

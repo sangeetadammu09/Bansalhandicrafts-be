@@ -1,4 +1,4 @@
-var Contact = require ('../models/contactform')
+var Contact = require ('../models/contact')
 const nodemailer = require('nodemailer');
 
 exports.mailContact = async(req,res)=>{

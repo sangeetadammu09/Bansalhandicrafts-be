@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const Product = require('../models/product');
+const Exhibition = require('../models/exhibition');
 
 exports.create = async(req,res)=>{
     const schema = Joi.object({     
@@ -9,19 +9,13 @@ exports.create = async(req,res)=>{
         category: Joi.string().required(),
         categoryId: Joi.string(),
         subCategory: Joi.string().optional(),
-        displayType: Joi.string().required(),
-        featureTypeId : Joi.string().required(),
-        actualPrice:Joi.string().required(),
-        discountPrice:Joi.string().required(),
-        deliveryType :Joi.string().required(),
-        availability: Joi.string().required(),
-        url: Joi.string().required(),
-        imageurl : Joi.string(),
         isActive :Joi.boolean().required(),
-        storageurl: Joi.optional()
+        storageurl: Joi.optional(),
+        url: Joi.optional(),
+        imageurl : Joi.optional()
     })
        try{
-         await schema.validateAsync(req.body);
+        // await schema.validateAsync(req.body);
          let payload = req.body;
         //check if image(s) included in payload
         if(req.files){
@@ -31,9 +25,9 @@ exports.create = async(req,res)=>{
         }
 
         payload.storageurlArr = req.files.map((x)=>({'url': x.storageurl }));
-        await  Product.create(payload, (err,data)=>{
+        await  Exhibition.create(payload, (err,data)=>{
              if(err)throw err
-              return res.status(200).json({ 'message': 'Product added successfully', 'data': data, 'status':200 });
+              return res.status(200).json({ 'message': 'data added successfully', 'data': data, 'status':200 });
           })
 
        }catch(err){
@@ -41,7 +35,7 @@ exports.create = async(req,res)=>{
        }
 }
 
-//list of product by page
+//all
 exports.list = async(req,res)=>{
     var pageNo = parseInt(req.body.startNumber)
      var size = parseInt(req.body.pageSize)
@@ -53,7 +47,7 @@ exports.list = async(req,res)=>{
      query.skip = size * (pageNo - 1)
      query.limit = size;
         try {
-            await Product.find({},{},query,(err, data)=>{
+            await Exhibition.find({},{},query,(err, data)=>{
                 if(err)throw err
                 data.sort((a,b)=>{
                     return new Date(b.creation_dt) - new Date(a.creation_dt);
@@ -72,12 +66,12 @@ exports.list = async(req,res)=>{
                 })
                 
             
-                Product.countDocuments({},(count_error, count) => {
+                Exhibition.countDocuments({},(count_error, count) => {
                     if (err) {
                       return res.json(count_error);
                     }
                     return res.json({
-                      'message': 'Products Fetched Successfully',
+                      'message': 'data Fetched Successfully',
                       total: count,
                       page: pageNo,
                       pageSize: data.length,
@@ -93,7 +87,7 @@ exports.list = async(req,res)=>{
         }
 }
 
-//list of id
+//id
 exports.listbyid = async(req,res)=>{
     var pageNo = parseInt(req.body.startNumber)
      var size = parseInt(req.body.pageSize)
@@ -107,7 +101,7 @@ exports.listbyid = async(req,res)=>{
      let reqparams = {productid: req.params.id};
     // query.productid = req.params.productid;
         try {
-            await Product.find(reqparams, {},query,(err, data)=>{
+            await Exhibition.find(reqparams, {},query,(err, data)=>{
                 if(err)throw err
                 data.sort((a,b)=>{
                     return new Date(b.creation_dt) - new Date(a.creation_dt);
@@ -121,12 +115,12 @@ exports.listbyid = async(req,res)=>{
                 }
                 })
             
-                Product.countDocuments({},(count_error, count) => {
+                Exhibition.countDocuments({},(count_error, count) => {
                     if (err) {
                       return res.json(count_error);
                     }
                     return res.json({
-                      'message': 'Products Fetched Successfully',
+                      'message': 'data Fetched Successfully',
                       total: count,
                       page: pageNo,
                       pageSize: data.length,
@@ -173,7 +167,7 @@ exports.search = async(req,res)=>{
         }
     
          try {
-            await Product.find({"$or":[filterCond]}, {},query,(err, data)=>{
+            await Exhibition.find({"$or":[filterCond]}, {},query,(err, data)=>{
                 if(err)throw err
                 data.sort((a,b)=>{
                     return new Date(b.creation_dt) - new Date(a.creation_dt);
@@ -192,7 +186,7 @@ exports.search = async(req,res)=>{
                 })
                 
             
-                Product.countDocuments({"$or":[filterCond]},(count_error, count) => {
+                Exhibition.countDocuments({"$or":[filterCond]},(count_error, count) => {
                     if (err) {
                       return res.json(count_error);
                     }
@@ -217,9 +211,9 @@ exports.search = async(req,res)=>{
 exports.single = async(req,res)=>{
   
     try {
-        await Product.findById(req.params.id,(err, data)=>{
+        await Exhibition.findById(req.params.id,(err, data)=>{
             if(err)throw err
-            return res.status(200).json({status:200, 'message': `Product with ${req.params.id} fetched successfully`, 'data': data });
+            return res.status(200).json({ 'message': `data with ${req.params.id} fetched successfully`, 'singleproduct': data });
             
         })
        
@@ -237,16 +231,10 @@ exports.update = async (req,res)=>{
         category: Joi.string().required(),
         categoryId: Joi.string(),
         subCategory: Joi.string().optional(),
-        displayType: Joi.string().required(),
-        featureTypeId : Joi.string().required(),
-        actualPrice:Joi.string().required(),
-        discountPrice:Joi.string().required(),
-        deliveryType :Joi.string().required(),
-        availability: Joi.string().required(),
-        url: Joi.string().required(),
-        imageurl : Joi.string(),
         isActive :Joi.boolean().required(),
         storageurl: Joi.optional(),
+        url: Joi.optional(),
+        imageurl : Joi.optional()
     })
 
     await schema.validateAsync(req.body);
@@ -272,19 +260,19 @@ exports.update = async (req,res)=>{
         } 
         payload.storageurlArr = req.files.map((x)=>({'url': x.storageurl }));   
     }else{
-        const pInfo = await Product.findById(id); 
+        const pInfo = await Exhibition.findById(id); 
         if(pInfo){
             payload.storageurlArr = pInfo.storageurlArr;
               
         }else{
             res.status(404);
-            throw new Error('Product not found')
+            throw new Error('data not found')
         }
     }
        
     try{ 
-             const data = await Product.findByIdAndUpdate( req.params.id,payload,{new:true})
-             return res.status(200).json({ "status": 200, 'message': 'product updated successfully', 'data':data});
+             const data = await Exhibition.findByIdAndUpdate( req.params.id,payload,{new:true})
+             return res.status(200).json({ "status": 200, 'message': 'data updated successfully', 'data':data});
 
     }catch (err) {
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
@@ -294,13 +282,12 @@ exports.update = async (req,res)=>{
 //delete
 exports.delete = async(req,res)=>{
     try{
-        await Product.findByIdAndDelete(req.params.id,(err,data)=>{
+        await Exhibition.findByIdAndDelete(req.params.id,(err,data)=>{
             if(err)throw err
-            return res.status(200).json({status : 200, 'message':'product deleted successfully',})
+            return res.status(200).json({status : 200, 'message':'data deleted successfully',})
         })
 
     }catch (err) {
         return res.status(500).json({ 'message': 'something went wrong', 'err': err.message })
     }
 }
-
